@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: droneserver
+  labels:
+    name: droneserver
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  selector:
+    name: droneserver

@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  drone-server:
+    image: drone/drone:1.0.0-rc.1
+    ports:
+      - 8081:80
+    volumes:
+      - ./:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    environment:
+      - DRONE_SERVER_HOST=drone.soumya.com
+      - DRONE_SERVER_PROTO=80
+      - DRONE_TLS_AUTOCERT=false
+      - DRONE_RUNNER_CAPACITY=3
+      - DRONE_GITHUB_SERVER=https://github.com
+      - DRONE_GITHUB_CLIENT_ID=2a48c4b190b83406afef
+      - DRONE_GITHUB_CLIENT_SECRET=7dab23cbd35e495414d4e39865a8a6f833293235
+      - DRONE_GITLAB_SKIP_VERIFY=true
+      - DRONE_DEBUG=true
+      - DRONE_OPEN=true

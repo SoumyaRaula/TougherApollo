@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: droneserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: droneserver
+    spec:
+      containers:
+      - name: droneserver
+        image: drone/drone:0.7
+        imagePullPolicy: Always
+        env:
+          - name: "DRONE_HOST"
+            value: drone.soumya.com
+          - name: "DRONE_OPEN"
+            value: "true"
+          - name: "DRONE_GITHUB"
+            value: "true"
+          - name: "DRONE_GITHUB_CLIENT"
+            value: 2a48c4b190b83406afef
+          - name: "DRONE_GITHUB_SECRET"
+            value: 7dab23cbd35e495414d4e39865a8a6f833293235
+        volumeMounts:
+        - mountPath: /var/lib/drone
+          name: drone-lib
+      volumes:
+      - name: drone-lib
+        hostPath:
+          path: /var/lib/drone

@@ -1,0 +1,8 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: droneserver-ingress
+spec:
+  backend:
+    serviceName: droneserver
+    servicePort: 80
